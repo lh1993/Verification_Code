@@ -42,6 +42,7 @@ class CheckCodeHandler(web.RequestHandler):
     def get(self, *args, **kwargs):
         global CODE
         image, CODE = check_node.create_validate_code()
+        #BytesIO操作二进制数据，将验证码图形写入内存
         mstream = io.BytesIO()
         image.save(mstream, 'GIF')
         self.write(mstream.getvalue())
