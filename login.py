@@ -4,7 +4,7 @@
 from tornado import web
 from tornado import httpserver
 from tornado import ioloop
-import check_node
+import check_code
 import io
 
 # 逻辑模块
@@ -41,7 +41,7 @@ class LoginHandler(web.RequestHandler):
 class CheckCodeHandler(web.RequestHandler):
     def get(self, *args, **kwargs):
         global CODE
-        image, CODE = check_node.create_validate_code()
+        image, CODE = check_code.create_validate_code()
         # BytesIO操作二进制数据，将验证码图形写入内存
         mstream = io.BytesIO()
         image.save(mstream, 'GIF')
